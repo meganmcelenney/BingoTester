@@ -1,0 +1,56 @@
+/*
+Megan McElenney
+*/
+package bingotester;
+
+public class Caller 
+{
+    int [] deck;
+    int [] used;
+    Board bo;
+    public Caller()//constructor
+    {
+        deck = new int[76];
+        used = new int[76];
+    }
+    public void deck()//creates the deck
+    {
+        for(int i = 0; i < deck.length; i++)
+        {
+            deck[i] = i;       
+        }
+    }
+    public int callCard()//generates random, unused number for each card 
+    {
+        int x = 0;
+        do
+        {
+            x = (int) (Math.random() * 75 + 1); 
+        }while(used[x] != 0);
+        used[x] = 1;
+        return x;
+    }
+    public String toString(int x)//allows card to have the letter and number
+    {
+        if(x < 16)
+        {
+            return "B " + x;
+        }
+        else if( x < 31)
+        {
+            return "I " + x;
+        }
+        else if( x < 46)
+        {
+            return "N " + x;  
+        }
+        else if( x < 61)
+        {
+            return "G " + x;    
+        }
+        else
+        {
+            return "O " + x;
+        }
+    }     
+}
