@@ -1,0 +1,42 @@
+/*
+Megan McElenney
+29 March 2018
+This code executes the game Bingo and ends with "Bingo!" once the player has 
+gotten 5 tiddlywinks in a row, column, or a diagonal. 
+Test Data:
+I have ensured this code works by running it 10 times and ensuring the game ends
+only once the necessary parameters have been met. 
+*/
+package bingotester;
+
+import javax.swing.JOptionPane;
+
+public class BingoTester 
+{
+    public static void main(String[] args) 
+    {
+        boolean playAgain = false;//Allows multiple games
+        do
+        {
+            Board b = new Board();
+            b.board();
+            System.out.print(b.toString());
+            Caller c = new Caller();
+            do//controls card calling
+            {
+                int called = c.callCard();
+                b.mark(called);
+                System.out.print("\nThe card called is: " + c.toString(called) 
+                        + "\n\n");
+                System.out.print(b.toString()); 
+            }while(b.win() == false);
+            System.out.println("BINGO!!\n\n\n");
+            String input = JOptionPane.showInputDialog("Would you like to play "
+                    + "again? y/n");
+            if(input.equalsIgnoreCase("y"))
+                playAgain = true;  
+            else
+                playAgain = false;
+        }while(playAgain == true);
+    } 
+}
